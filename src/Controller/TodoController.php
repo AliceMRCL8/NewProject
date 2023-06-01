@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Todo;
+use App\Form\ContxtFormType;
+use App\Form\TodoFilterType;
 use App\Form\TodoType;
 use App\Repository\TodoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,12 +22,17 @@ class TodoController extends AbstractController
      */
     public function index(TodoRepository $todoRepository, Request $request)
     {
-
+        $form=$this->createForm(TodoFilterType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&&$form->isValid()){
+            dump($form->getData());
+        }
        $order=$request->query->get('order',"asc");
        $orderby=$request->query->get('orderby', "id");
        return $this->render('todo/index.html.twig', [
            'todos' => $todoRepository->findBy([],[$orderby=>$order]),
-           'order'=>($order == "asc") ? "desc" : "asc"
+           'order'=>($order == "asc") ? "desc" : "asc",
+           'form'=>$form->createView()
         ]);
     
     }
