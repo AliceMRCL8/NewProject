@@ -16,7 +16,7 @@ class TodoType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('age')
-            ->add('stiltodo',CheckboxType::class,['mapped'=>false,'label'=>'tache à faire','require'=>false])
+            ->add('done',CheckboxType::class,['label'=>'tâche faite','required'=>false])
         ;
     }
 
