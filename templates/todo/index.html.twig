@@ -23,6 +23,7 @@
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.description }}</td>
                 <td>{{ todo.age }}</td>
+                <!--Faire la checkbox de Done dans le tableau-->
                 <td><input type="checkbox" disabled {{ todo.done ? 'checked' : '' }}></td>
                 <td>
                     <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
@@ -34,11 +35,13 @@
                 <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
+        <!--formulaire de Filtre-->
         {{form_start(form)}}
         {{form_widget(form)}}
         <input type="submit" value="Filtrer">
         {{form_end(form)}}
 
+        <!--formulaire de recherche-->
         {{form_start(search)}}
         {{form_widget(search)}}
         <input type="submit" value="Recherche">
