@@ -12,6 +12,7 @@
                 <th><a href="{{ path('app_todo_index') }}?orderby=name&order={{order}}">Name</a></th>
                 <th>description</th>
                 <th>age</th>
+                <th>done</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.description }}</td>
                 <td>{{ todo.age }}</td>
+                <td>{{ todo.done }}<input type="checkbox"></td>
                 <td>
                     <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
                     <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>

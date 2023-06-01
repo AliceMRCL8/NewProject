@@ -21,9 +21,8 @@ class TodoController extends AbstractController
     public function index(TodoRepository $todoRepository, Request $request)
     {
 
-       $order=$request->query->get('order');
-       $orderby=$request->query->get('orderby');
-        
+       $order=$request->query->get('order',"asc");
+       $orderby=$request->query->get('orderby', "id");
        return $this->render('todo/index.html.twig', [
            'todos' => $todoRepository->findBy([],[$orderby=>$order]),
            'order'=>($order == "asc") ? "desc" : "asc"
