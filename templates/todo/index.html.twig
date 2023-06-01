@@ -35,7 +35,7 @@
             </tr>
         {% endfor %}
         {{form_start(form)}}
-        <input type="checkbox">Afficher Uniquement les todos à faire</input>
+        {{form_widget(form)}}
         <input type="submit" value="Filtrer">
         {{form_end(form)}}
         </tbody>

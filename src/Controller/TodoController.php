@@ -18,19 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class TodoController extends AbstractController
 {
     /**
-     * @Route("/", name="app_todo_index", methods={"GET"})
+     * @Route("/", name="app_todo_index", methods={"GET", "POST"})
      */
     public function index(TodoRepository $todoRepository, Request $request)
     {
         $form=$this->createForm(TodoFilterType::class);
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid()){
-            dump($form->getData());
+            $checked=($form->get("stiltodo")->getData());
         }
        $order=$request->query->get('order',"asc");
        $orderby=$request->query->get('orderby', "id");
+
+       $vide= [];
+       if($checked==1){
+        $vide = ["done"=>$checked];
+       }
+
        return $this->render('todo/index.html.twig', [
-           'todos' => $todoRepository->findBy([],[$orderby=>$order]),
+           'todos' => $todoRepository->findBy($vide,[$orderby=>$order]),
            'order'=>($order == "asc") ? "desc" : "asc",
            'form'=>$form->createView()
         ]);
