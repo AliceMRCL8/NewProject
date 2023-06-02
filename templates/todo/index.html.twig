@@ -11,7 +11,7 @@
                 <th><a href="{{ path('app_todo_index') }}?orderby=id&order={{order}}">Id</th>
                 <th><a href="{{ path('app_todo_index') }}?orderby=name&order={{order}}">Name</a></th>
                 <th>description</th>
-                <th>age</th>
+                <th>priorité</th>
                 <th>done</th>
                 <th>actions</th>
             </tr>
@@ -22,7 +22,7 @@
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.name }}</td>
                 <td>{{ todo.description }}</td>
-                <td>{{ todo.age }}</td>
+                <td>{{ todo.priority.name }}</td>
                 <!--Faire la checkbox de Done dans le tableau-->
                 <td><input type="checkbox" disabled {{ todo.done ? 'checked' : '' }}></td>
                 <td>
