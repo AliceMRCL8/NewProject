@@ -43,6 +43,11 @@ class Todo
      */
     private $priority;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="todos")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Todo
     public function setPriority(?Priority $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
